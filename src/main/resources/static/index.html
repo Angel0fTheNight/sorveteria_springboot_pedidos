@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Sorveteria</title>
+</head>
+<body>
+  <h1>🍦 Sorveteria</h1>
+  <ul id="lista"></ul>
+
+  <script>
+    fetch("/api/sorvetes")
+      .then(r => r.json())
+      .then(sorvetes => {
+        let ul = document.getElementById("lista");
+        sorvetes.forEach(s => {
+          let li = document.createElement("li");
+          li.textContent = s.sabor + " - R$" + s.preco + (s.disponivel ? " ✅" : " ❌");
+          ul.appendChild(li);
+        });
+      });
+  </script>
+</body>
+</html>
